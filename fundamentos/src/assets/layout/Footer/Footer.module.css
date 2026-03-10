@@ -1,0 +1,11 @@
+.footer{
+    background-color: rgb(132, 0, 255);
+    color:aliceblue;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+
+    .name{
+        font-size: 40px;
+    }
+}
