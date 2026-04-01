@@ -1,28 +1,50 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 // import App from './App.jsx'
 
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import { Home } from './assets/pages/Home';
-import { Sobre } from './assets/pages/Sobre';
+import { Home } from "./pages/Home";
+import { Main } from "./layouts/Main";
+import { Sobre } from "./pages/Sobre";
+import { AuthProvider } from "./context/AuthContext";
+import Blog from "./pages/Blog";
+import Login from "./pages/Login";
 
+;
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+
+      {
+        path: "sobre",
+        element: <Sobre />,
+      },
+
+      {
+        path: "blog",
+        element: <Blog />,
+      },
+    ],
   },
   {
-    path: "/sobre",
-    element: <Sobre />,
-  },
+    path: "login",
+    element: <Login />
+  }
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
     {/* <App /> */}
   </StrictMode>,
-)
+);
